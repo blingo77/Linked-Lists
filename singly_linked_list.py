@@ -35,7 +35,7 @@ class LinkedList:
         self.head = new_node
         del tempNode
     
-    def insert(self, data, index:str):
+    def insert(self, data, index):
         """
         Insert a node at any given index
         """
@@ -64,7 +64,15 @@ class LinkedList:
             prevNode = currentNode
             currentNode = prevNode.pointer
 
-    
+    def pop(self):
+        currentNode = self.head
+        while True:
+            if currentNode.pointer is None:
+                prevNode.pointer = None
+                break
+            prevNode = currentNode
+            currentNode = prevNode.pointer
+
     def length(self):
         """
         Get's the length of the list and returns it
@@ -101,4 +109,6 @@ ll.prepend(0)
 ll.append(4)
 ll.display()
 ll.insert(3,3)
+ll.display()
+ll.pop()
 ll.display()
