@@ -1,3 +1,18 @@
+"""
+This contains the basic functions of a singly linked list. 
+Time complexity of all these functions are all worst case O(n)
+
+functions:
+.append() 
+.prepend()
+.insert()
+.pop()
+.pop_fist()
+.remove()
+.length()
+.display()
+"""
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -65,6 +80,9 @@ class LinkedList:
             currentNode = prevNode.pointer
 
     def pop(self):
+        """
+        Removes the last node in the list
+        """
         currentNode = self.head
         while True:
             if currentNode.pointer is None:
@@ -72,6 +90,38 @@ class LinkedList:
                 break
             prevNode = currentNode
             currentNode = prevNode.pointer
+
+    def pop_front(self):
+        """
+        Removes the first node in the list
+        """
+        tempNode = self.head
+        self.head = tempNode.pointer
+        del tempNode
+
+    def remove(self, index):
+        if index == 0:
+            self.pop_front()
+            return
+        
+        if index == self.length():
+            self.pop()
+            return
+        elif index > self.length():
+            print('Invalid index')
+            return
+        
+        currentNode = self.head
+        currentIndex = 0
+        while True:
+            if currentIndex == index:
+                prevNode.pointer = currentNode.pointer
+                currentNode.pointer = None
+                break
+            currentIndex += 1
+            prevNode = currentNode
+            currentNode = prevNode.pointer
+    
 
     def length(self):
         """
@@ -104,11 +154,15 @@ class LinkedList:
         
 ll = LinkedList()
 ll.append(1)
+# Linked List: [1]
 ll.append(2)
+# Linked List: [1,2]
 ll.prepend(0)
+# Linked List: [0,1,2]
 ll.append(4)
-ll.display()
+# Linked List: [0,1,2,4]
 ll.insert(3,3)
+#Linked List: [0,1,2,3,4]
 ll.display()
-ll.pop()
-ll.display()
+
+
